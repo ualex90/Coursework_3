@@ -1,9 +1,10 @@
 from settings import OPERATIONS
-from utils import get_operations
+from utils import get_recent_transactions
 
 
 def main():
-    pass
+    recent_transactions = get_recent_transactions(OPERATIONS)
+    print(recent_transactions)
 
 
 if __name__ == '__main__':
