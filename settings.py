@@ -7,3 +7,4 @@ DATA = Path(SRC, "data")
 
 # Файлы данных
 OPERATIONS = Path(DATA, "operations.json")
+TEST_DATA = Path(DATA, 'test_data.json')
