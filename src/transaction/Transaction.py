@@ -33,10 +33,10 @@ class Transaction:
         :param check: данные в формате строки
         :return: замаскированная строка
         """
-        if "Счет" in check:
-            return f'Счет **{check[-4:]}'
         if "Наличные" in check:
             return check
+        if "Счет" in check:
+            return f'Счет **{check[-4:]}'
         return f'{check[:-17]} {check[-16:-12]} {check[-11:-9]}** **** {check[-4:]}'
 
     def __str__(self):
