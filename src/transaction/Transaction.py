@@ -24,5 +24,14 @@ class Transaction:
         self.from_ = from_
         self.to_ = to_
 
+    @staticmethod
+    def hide_symbols(check):
+        if "Счет" in check:
+            return f'Счет **{check[-4:]}'
+        return f'{check[:-17]} {check[-16:-12]} {check[-11:-9]}** **** {check[-4:]}'
+
     def __str__(self):
-        return f'{self.date.strftime("%d %B, %Y")}'
+        return f'''{self.date.strftime("%d.%m.%Y")} {self.description}
+                 \r{self.hide_symbols(self.from_)} -> {self.hide_symbols(self.to_)}
+                 \r{self.amount} {self.currency_name}'''
+
