@@ -25,13 +25,21 @@ class Transaction:
         self.to_ = to_
 
     @staticmethod
-    def hide_symbols(check):
+    def mask(check: str):
+        """
+        Метод маскирует номер счета в формате **XXXX
+        и номер карты в формате XXXX XX** **** XXXX
+        либо возвращает "Наличные" без маскирования
+        :param check: данные в формате строки
+        :return: замаскированная строка
+        """
         if "Счет" in check:
             return f'Счет **{check[-4:]}'
+        if "Наличные" in check:
+            return check
         return f'{check[:-17]} {check[-16:-12]} {check[-11:-9]}** **** {check[-4:]}'
 
     def __str__(self):
         return f'''{self.date.strftime("%d.%m.%Y")} {self.description}
-                 \r{self.hide_symbols(self.from_)} -> {self.hide_symbols(self.to_)}
+                 \r{self.mask(self.from_)} -> {self.mask(self.to_)}
                  \r{self.amount} {self.currency_name}'''
-
