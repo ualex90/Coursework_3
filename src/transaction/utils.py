@@ -14,7 +14,8 @@ def load_json(file):
 
 def mod_transactions(tr):
     """
-    Функция преобразует поле date в unix и
+    Функция преобразует поле date в unix,
+    переименовывает поля "id" -> "id_", "from" -> "from_", "to" -> "to_"
     сортирует список транзакций от ранних до поздних
     :param tr: исходный список транзакций
     :return: модифицированный список транзакций
@@ -24,7 +25,16 @@ def mod_transactions(tr):
         if tr[i].get("date") is not None:
             dt = tr[i]["date"]
             tr[i]["date"] = datetime.fromisoformat(dt).timestamp()
-            mod_tr.append(tr[i])
+            if tr[i].get("id") is not None:
+                tr[i]["id_"] = tr[i].pop("id")
+                mod_tr.append(tr[i])
+                if tr[i].get("from") is not None:
+                    tr[i]["from_"] = tr[i].pop("from")
+                    mod_tr.append(tr[i])
+                    if tr[i].get("to") is not None:
+                        tr[i]["to_"] = tr[i].pop("to")
+                        mod_tr.append(tr[i])
+
     mod_tr.sort(key=lambda dict_: dict_["date"])
     return mod_tr
 
