@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 
 
-def load_json(file):
+def load_json(file) -> list:
     """
     Функция чтения файла json
     :param file: путь к файлу
@@ -12,7 +12,7 @@ def load_json(file):
         return json.load(file_in)
 
 
-def mod_transactions(tr):
+def mod_transactions(tr: list) -> list:
     """
     Функция проверяет, выполнена ли транзакция,
     преобразует поле date в unix,
@@ -46,7 +46,7 @@ def mod_transactions(tr):
     return mod_tr
 
 
-def get_recent_transactions(file: list, quantity=5):
+def get_recent_transactions(file: list, quantity=5) -> list:
     """
     Функция вызывает чтение JSON файла,
     вызывает функцию модифификации списка и
