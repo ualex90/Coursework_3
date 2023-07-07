@@ -1,5 +1,9 @@
 import pytest
 
+from settings import TEST_DATA
+from src.transaction.Transaction import Transaction
+from src.transaction.utils import get_recent_transactions
+
 
 @pytest.fixture
 def transactions_fixture():  # исходные тестовые данные
@@ -20,3 +24,10 @@ def transactions_fixture():  # исходные тестовые данные
              'to': 'Счет 54321543215432154321'
              }
             ]
+
+
+@pytest.fixture
+def tr_fixture():  # чтение данных тестового файла
+    data = get_recent_transactions(TEST_DATA)[0]
+    tr = Transaction(**data)
+    return tr
