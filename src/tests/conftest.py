@@ -74,3 +74,18 @@ def tr_fixture():  # чтение данных тестового файла
     data = get_recent_transactions(TEST_DATA)[0]
     tr = Transaction(**data)
     return tr
+
+
+@pytest.fixture()
+def result_fixture():
+    return '''07.07.2023 Пополнение
+Наличные -> Счет **4321
+20000.33 USD 
+
+07.07.2023 Перевод организации
+Счет **4321 -> Счет **4321
+20000.33 USD 
+
+07.07.2023 Перевод организации
+Maestro 1234 23** **** 1234 -> Счет **2345
+10000.99 руб.'''
